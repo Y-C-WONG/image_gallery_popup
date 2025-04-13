@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .igp_show-button {
+            background-color: #2277d8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Gallery overlay styles */
+        .igp_gallery-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .igp_gallery-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            width: 80%;
+            height: 50%;
+            max-width: 1000px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .igp_gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #eaeaea;
+            flex-shrink: 0;
+        }
+
+        .igp_gallery-title {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .igp_gallery-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .igp_gallery-content {
+            flex-grow: 1;
+            overflow-y: scroll;
+            padding: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: #c1c1c1 #f1f1f1;
+        }
+
+        .igp_gallery-content::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .igp_gallery-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .igp_gallery-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .igp_gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .igp_gallery-item {
+            aspect-ratio: 1/1;
+            background-color: #eee;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .igp_gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .igp_gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .igp_loading-indicator {
+            text-align: center;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .igp_spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: igp_spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes igp_spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Image preview styles */
+        .igp_image-preview-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .igp_image-preview-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+        
+        .igp_image-preview-container img {
+            display: block;
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+        }
+        
+        .igp_image-preview-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: none;
+            font-size: 18px;
+            color: #333;
+            z-index: 2001;
+        }
+        
+        .igp_image-preview-title {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.8);
+            color: #333;
+            padding: 10px 15px;
+            font-size: 16px;
+            text-align: center;
+        }
+        
+        .igp_image-preview-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 20px;
+            color: #333;
+            z-index: 2001;
+        }
+        
+        .igp_image-preview-prev {
+            left: 20px;
+        }
+        
+        .igp_image-preview-next {
+            right: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button class="igp_show-button" id="igp_showImages">Show Images</button>
+
+    <div class="igp_gallery-overlay" id="igp_galleryOverlay">
+        <div class="igp_gallery-container">
+            <div class="igp_gallery-header">
+                <h2 class="igp_gallery-title">Image gallery</h2>
+                <button class="igp_gallery-close" id="igp_closeGallery">×</button>
+            </div>
+            <div class="igp_gallery-content">
+                <div class="igp_gallery-grid" id="igp_galleryGrid"></div>
+                <div class="igp_loading-indicator" id="igp_loadingIndicator">
+                    <div class="igp_spinner"></div>
+                    <span>Loading images...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Image Preview Modal -->
+    <div class="igp_image-preview-overlay" id="igp_imagePreviewOverlay">
+        <div class="igp_image-preview-container">
+            <button class="igp_image-preview-close" id="igp_closeImagePreview">×</button>
+            <img id="igp_previewImage" src="" alt="">
+            <div class="igp_image-preview-title" id="igp_previewTitle"></div>
+            <div class="igp_image-preview-nav igp_image-preview-prev" id="igp_prevImage">&#8249;</div>
+            <div class="igp_image-preview-nav igp_image-preview-next" id="igp_nextImage">&#8250;</div>
+        </div>
+    </div>
+
+    <script>
+        // Directly embed the images data
+        const igp_imagesJson = {
+          "images": [
+            {
+              "url": "https://images.unsplash.com/photo-1501854140801-50d01698950b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Mountain Landscape"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Forest Path"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Sunlight Through Trees"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Beach Sunset"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Starry Night"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Architecture"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1486728297118-82a07bc48a28?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Northern Lights"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Countryside"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1504198266287-1659872e6590?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Desert Landscape"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1446329813274-7c9036bd9a1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Ocean Waves"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Green Field"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Autumn Colors"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1505765050516-f72dcac9c60e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Mountain Lake"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1470770903676-69b98201ea1c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Wildflowers"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1496060169243-453fde45943b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "City Skyline"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1468276311594-df7cb65d8df6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Desert Sunset"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1560008511-11c63416e52d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Modern Building"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1444464666168-49d633b86797?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Birds in Flight"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1507608616759-54f48f0af0ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Autumn Path"
+            },
+            {
+              "url": "https://images.unsplash.com/photo-1465189684280-6a8fa9b19a00?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
+              "title": "Waterfalls"
+            }
+          ]
+        };
+
+        // Variables to control image loading
+        let igp_isLoading = false;
+        let igp_currentImageIndex = 0;
+        let igp_allImages = [];
+
+        // DOM elements
+        const igp_showImagesBtn = document.getElementById('igp_showImages');
+        const igp_galleryOverlay = document.getElementById('igp_galleryOverlay');
+        const igp_closeGalleryBtn = document.getElementById('igp_closeGallery');
+        const igp_galleryGrid = document.getElementById('igp_galleryGrid');
+        const igp_loadingIndicator = document.getElementById('igp_loadingIndicator');
+        const igp_galleryContent = document.querySelector('.igp_gallery-content');
+        
+        // Image preview elements
+        const igp_imagePreviewOverlay = document.getElementById('igp_imagePreviewOverlay');
+        const igp_closeImagePreviewBtn = document.getElementById('igp_closeImagePreview');
+        const igp_previewImage = document.getElementById('igp_previewImage');
+        const igp_previewTitle = document.getElementById('igp_previewTitle');
+        const igp_prevImageBtn = document.getElementById('igp_prevImage');
+        const igp_nextImageBtn = document.getElementById('igp_nextImage');
+
+        // Load images from JSON
+        function igp_loadImages() {
+            igp_isLoading = true;
+            igp_loadingIndicator.style.display = 'flex';
+            
+            // Simulate loading delay
+            setTimeout(() => {
+                igp_allImages = igp_imagesJson.images;
+                igp_displayImages(igp_allImages);
+                
+                igp_isLoading = false;
+                igp_loadingIndicator.style.display = 'none';
+            }, 500);
+        }
+
+        // Display images in the gallery
+        function igp_displayImages(images) {
+            igp_galleryGrid.innerHTML = '';
+            
+            images.forEach((image, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'igp_gallery-item';
+                galleryItem.dataset.title = image.title;
+                galleryItem.dataset.fullUrl = image.url;
+                galleryItem.dataset.index = index;
+                
+                // Add click event to show the larger image
+                galleryItem.addEventListener('click', function() {
+                    igp_currentImageIndex = parseInt(this.dataset.index);
+                    igp_showImagePreview(this.dataset.fullUrl, this.dataset.title);
+                });
+                
+                const img = document.createElement('img');
+                img.alt = image.title;
+                img.src = image.url;
+                
+                galleryItem.appendChild(img);
+                igp_galleryGrid.appendChild(galleryItem);
+            });
+        }
+
+        // Show large image preview
+        function igp_showImagePreview(imageUrl, imageTitle) {
+            igp_previewImage.src = imageUrl;
+            igp_previewTitle.textContent = imageTitle;
+            igp_imagePreviewOverlay.style.display = 'flex';
+            
+            // Update navigation buttons visibility
+            igp_updateNavigationButtons();
+        }
+        
+        // Close image preview
+        function igp_closeImagePreview() {
+            igp_imagePreviewOverlay.style.display = 'none';
+        }
+        
+        // Navigate to previous image
+        function igp_showPreviousImage() {
+            if (igp_currentImageIndex > 0) {
+                igp_currentImageIndex--;
+                igp_previewImage.src = igp_allImages[igp_currentImageIndex].url;
+                igp_previewTitle.textContent = igp_allImages[igp_currentImageIndex].title;
+                igp_updateNavigationButtons();
+            }
+        }
+        
+        // Navigate to next image
+        function igp_showNextImage() {
+            if (igp_currentImageIndex < igp_allImages.length - 1) {
+                igp_currentImageIndex++;
+                igp_previewImage.src = igp_allImages[igp_currentImageIndex].url;
+                igp_previewTitle.textContent = igp_allImages[igp_currentImageIndex].title;
+                igp_updateNavigationButtons();
+            }
+        }
+        
+        // Update navigation buttons visibility based on current position
+        function igp_updateNavigationButtons() {
+            igp_prevImageBtn.style.visibility = igp_currentImageIndex <= 0 ? 'hidden' : 'visible';
+            igp_nextImageBtn.style.visibility = igp_currentImageIndex >= igp_allImages.length - 1 ? 'hidden' : 'visible';
+        }
+
+        // Show the gallery
+        function igp_showGallery() {
+            igp_galleryOverlay.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling the main page
+            
+            if (igp_allImages.length === 0) {
+                igp_loadImages();
+            }
+        }
+
+        // Close the gallery
+        function igp_closeGallery() {
+            igp_galleryOverlay.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        // Event listeners
+        igp_showImagesBtn.addEventListener('click', igp_showGallery);
+        igp_closeGalleryBtn.addEventListener('click', igp_closeGallery);
+        igp_closeImagePreviewBtn.addEventListener('click', igp_closeImagePreview);
+        igp_prevImageBtn.addEventListener('click', igp_showPreviousImage);
+        igp_nextImageBtn.addEventListener('click', igp_showNextImage);
+        
+        // Close gallery when clicking outside the container
+        igp_galleryOverlay.addEventListener('click', event => {
+            if (event.target === igp_galleryOverlay) {
+                igp_closeGallery();
+            }
+        });
+        
+        // Close image preview when clicking outside the image
+        igp_imagePreviewOverlay.addEventListener('click', event => {
+            if (event.target === igp_imagePreviewOverlay) {
+                igp_closeImagePreview();
+            }
+        });
+        
+        // Handle keyboard events (Escape key, Arrow keys)
+        document.addEventListener('keydown', event => {
+            if (igp_imagePreviewOverlay.style.display === 'flex') {
+                // Image preview is open
+                switch (event.key) {
+                    case 'Escape':
+                        igp_closeImagePreview();
+                        break;
+                    case 'ArrowLeft':
+                        igp_showPreviousImage();
+                        break;
+                    case 'ArrowRight':
+                        igp_showNextImage();
+                        break;
+                }
+            } else if (igp_galleryOverlay.style.display === 'block') {
+                // Gallery is open
+                if (event.key === 'Escape') {
+                    igp_closeGallery();
+                }
+            }
+        });
+    </script>
+</body>
+</html>
