@@ -47,6 +47,7 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+			z-index: 1010;
         }
 
         .igp_gallery-header {
@@ -278,70 +279,839 @@
     <script>
         // Using your provided JSON data
         const igp_imagesJson = {
-            "images": [
-                { "url": "images/abc (1).jpg", "title": "Image 1" },
-                { "url": "images/abc (2).jpg" },
-                { "url": "images/abc (3).jpg" },
-                { "url": "images/abc (4).jpg" },
-                { "url": "images/abc (5).jpg" },
-                { "url": "images/abc (6).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-				{ "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" },
-                { "url": "images/abc (1).jpg" }
-                // More images would be added here
-            ]
-        };
+    "images": [
+        {
+            "url": "images/convert_webp/202406_IMG_1280.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1278.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1277.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1270.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1269.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1268.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1266.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1261.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1257.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1252.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1250.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1246.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1243.webp"
+        },
+        {
+            "url": "images/convert_webp/202406_IMG_1242.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1280.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1270.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1269.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1268.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1266.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1261.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1257.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1245.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1241.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1240.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1238.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1235.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1234.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1232.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1230.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1229.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1228.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1227.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1226.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1225.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1224.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1220.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1219.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1217.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1216.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1215.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1211.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1210.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1208.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1207.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1205.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1204.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1198.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1196.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1193.webp"
+        },
+        {
+            "url": "images/convert_webp/202406 visit and updates_IMG_1191.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231210-WA0021.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231208-WA0006.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231208-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231208-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231208-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231208-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231202-WA0007.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231115-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231115-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231115-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231115-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231108-WA0008.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231108-WA0007.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231108-WA0006.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231107-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231103-WA0011.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231103-WA0009.webp"
+        },
+        {
+            "url": "images/convert_webp/202311 Updates and re-roofing Dec 23_IMG-20231103-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230712-New Facial board treated.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230712- old rain gutter removed.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230705-Waste line plumbing lines to Bio Gas.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230705-Small Gate replaced.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230705-New Gate installed.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230705- new facial board replacement.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-Wash Basin 1.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-Meter ECG.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-Girls shower room - CH.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-ECG cabling.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-Concrete for new Gate installation.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-CH bathroom.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-Bio Gas 2.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-Bio  Gas.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701-3-face meter ECG.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701- new toilet cistern CH.webp"
+        },
+        {
+            "url": "images/convert_webp/202307 July 2023_IMG-20230701- Bio Gas 1.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230705-WA0008.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230705-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230702-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230701-Bio Gas 9.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230629-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230622-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230621-WA0010.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230620-bio gas chambers.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230620-bio Gas 3.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230620-Bio Gas.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230620-Bio Gas 7.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230620-Bio Gas 4.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230617-making of new gate.webp"
+        },
+        {
+            "url": "images/convert_webp/202306 June 2023_IMG-20230617-making of new gate 1.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_roof top IMG-20220816-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220920-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220920-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220920-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220920-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220816-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220728-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220728-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220728-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220728-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220623-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220623-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202208 Jan up to August 2022 MH_IMG-20220613-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4676.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4675.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4673.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4672.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4668.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4666.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4653.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4648.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4647.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4645.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4640.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4638.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4637.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4636.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4635.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4632.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4627.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4624.webp"
+        },
+        {
+            "url": "images/convert_webp/202205 May 2022_IMG_4622.webp"
+        },
+        {
+            "url": "images/convert_webp/202204 works for CH and MH_IMG-20220421-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202204 works for CH and MH_IMG-20220421-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202204 works for CH and MH_IMG-20220411-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202204 works for CH and MH_IMG-20220401-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202204 works for CH and MH_IMG-20220401-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202204 works for CH and MH_IMG-20220401-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202201-MH-Plastering and burglar proof_IMG-20220118-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_Main building_IMG_3354.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3397.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3395.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3387.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3385.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3384.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3383.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3382.webp"
+        },
+        {
+            "url": "images/convert_webp/202110 CH & MH Oct 2021 visit_IMG_3380.webp"
+        },
+        {
+            "url": "images/convert_webp/202109-MH-Second floor walls_IMG-20210922-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202107-MH-Second floor walls_IMG-20210714-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202104-MH-first floor blocks_showing main building in background.webp"
+        },
+        {
+            "url": "images/convert_webp/202104-MH-first floor blocks_progressing.webp"
+        },
+        {
+            "url": "images/convert_webp/202104-MH-first floor blocks_other angles.webp"
+        },
+        {
+            "url": "images/convert_webp/202104-MH-first floor blocks_IMG-20210422-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202103-MH-first floor blocks_IMG-20210302-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202102-MH-first floor blocks_block works.webp"
+        },
+        {
+            "url": "images/convert_webp/202102-MH-first floor blocks_IMG-20210219-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202012-MH-first floor flow_wood work.webp"
+        },
+        {
+            "url": "images/convert_webp/202012-MH-first floor flow_wood work 2.webp"
+        },
+        {
+            "url": "images/convert_webp/202012-MH-first floor flow_IMG-20210113-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202011-MH-Ground floor_IMG-20201123-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202011-MH-Ground floor_IMG-20201117-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202009 CH Tilingfor home_truck with tiles.webp"
+        },
+        {
+            "url": "images/convert_webp/202009 CH Tilingfor home_tiles for 1st floor.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_pile of window frames.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_dfab1d2f-f4d1-42fc-a40e-ff073383b0aa.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_d7197bad-558b-4290-addd-fab4fe7d818c.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20220318-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20220228-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20200618-WA0006.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20200618-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20200618-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20200618-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20200618-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20200618-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190730-WA0006.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190730-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190730-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190730-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190730-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190712-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190712-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190712-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_IMG-20190712-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 burglar proof - doors and louvres_0fd72843-d002-4ea6-91f0-9574cdeeae5e.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 CH Washrooms_toilet cubicles.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 CH Washrooms_showing pipes for shower.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 CH Washrooms_additional toilet cubicles.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 CH Washrooms_IMG-20200618-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/202006 CH Washrooms_IMG-20200618-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_hallway.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1954.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1947.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1945.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1940.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1930.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1893.webp"
+        },
+        {
+            "url": "images/convert_webp/202002 doors and frames_IMG_1867.webp"
+        },
+        {
+            "url": "images/convert_webp/201912 CH plastering_IMG-20191218-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/201912 CH plastering_IMG-20191218-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/201912 CH plastering_IMG-20191218-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201912 CH plastering_IMG-20191218-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/201906 CH - 2019  visit_IMG_0297.webp"
+        },
+        {
+            "url": "images/convert_webp/201906 CH - 2019  visit_IMG_0290.webp"
+        },
+        {
+            "url": "images/convert_webp/201905-Roofing_IMG-20190520-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/201905-Roofing_IMG-20190520-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201905-Roofing_IMG-20190520-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/201905-Roofing_IMG-20190520-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201905-Roofing_20190525_111040.webp"
+        },
+        {
+            "url": "images/convert_webp/201905-Roofing_20190525_110949.webp"
+        },
+        {
+            "url": "images/convert_webp/201902-Roofing_IMG-20190203-WA0004.webp"
+        },
+        {
+            "url": "images/convert_webp/201902-Roofing_IMG-20190203-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201811-Roofing_IMG_20181105_165627_063.webp"
+        },
+        {
+            "url": "images/convert_webp/201810 MH Second floor  complete_IMG-20180408-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180722-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180722-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180408-WA0010.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180408-WA0008.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180408-WA0006.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180408-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180408-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180405-WA0006.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180405-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180328-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180216-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20180216-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20171028-WA0033.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20171028-WA0032.webp"
+        },
+        {
+            "url": "images/convert_webp/201804 CH first  floor_IMG-20171017-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20180216-WA0005.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20180216-WA0003.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20180216-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20171028-WA0031.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20171028-WA0030.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20171028-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20171017-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20170720-WA0001.webp"
+        },
+        {
+            "url": "images/convert_webp/201701 CH first floor concrete flow_IMG-20170630-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170621-WA0031.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170621-WA0030.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170621-WA0029.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170621-WA0028.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170621-WA0027.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170103-WA0014.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20170103-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20161219-WA0002.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_IMG-20161117-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201612 CH Foundation level_20180428_073828.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20160322-WA0017.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150506-WA0030.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150419-WA0014.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150418-WA0037.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150418-WA0031.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150418-WA0008.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150416-WA0036.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150416-WA0015.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150416-WA0011.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150329-WA0012.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150329-WA0000.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0044.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0035.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0033.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0031.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0028.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0026.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0025.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0022.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0020.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0019.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0018.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150319-WA0017.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150317-WA0014.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150317-WA0007.webp"
+        },
+        {
+            "url": "images/convert_webp/201606 Wall & Gate_IMG-20150317-WA0006.webp"
+        }
+    ]
+};
+
+// Add this at the start of your script, around line 600
+// Mobile detection and optimization
+      const igp_isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+// Adjust parameters for mobile
+      if (igp_isMobile) {
+          igp_itemsPerRow = 3; // Reduce columns on mobile
+          igp_bufferRows = 0; // Minimize buffer for better performance
+      }
+
 
 // Variables to control image loading
        let igp_isLoading = false;
@@ -408,8 +1178,8 @@
            
            // Process next item after a small delay (throttling)
            setTimeout(() => {
-               igp_processImageQueue();
-           }, 50); // 50ms delay between loading images
+                   igp_processImageQueue();
+               }, igp_isMobile ? 100 : 50); // 100ms delay on mobile, 50ms on desktop
        }
 
        // Queue an image for loading
@@ -488,6 +1258,16 @@
                galleryItem.className = 'igp_gallery-item';
                galleryItem.dataset.index = i;
                galleryItem.dataset.title = image.title;
+               
+               // Get the image path and create small image path
+               const imagePath = image.url;
+               const lastSlashIndex = imagePath.lastIndexOf('/');
+               const imageFolder = imagePath.substring(0, lastSlashIndex);
+               const imageFile = imagePath.substring(lastSlashIndex + 1);
+               const smallImageUrl = `${imageFolder}/thumbnails/${imageFile}`;
+               
+               // Store both URLs
+               galleryItem.dataset.thumbnailUrl = smallImageUrl;
                galleryItem.dataset.fullUrl = image.url;
                
                // Position the item absolutely using transform (better performance than top/left)
@@ -499,13 +1279,15 @@
                // Add click event
                galleryItem.addEventListener('click', function() {
                    igp_currentImageIndex = parseInt(this.dataset.index);
+                   // Use the full-size image for the preview
                    igp_showImagePreview(this.dataset.fullUrl, this.dataset.title);
                });
                
                // Create image with lazy loading
                const img = document.createElement('img');
                img.alt = image.title;
-               img.dataset.src = image.url;
+               // Use small image for the gallery thumbnail
+               img.dataset.src = smallImageUrl;
                
                galleryItem.appendChild(img);
                fragment.appendChild(galleryItem);
@@ -687,6 +1469,15 @@
            // Clear image loading queue when closing
            igp_imageLoadQueue = [];
            igp_isProcessingQueue = false;
+           
+           // On mobile devices, clear all image elements to free memory
+           if (igp_isMobile) {
+               igp_galleryGrid.querySelectorAll('.igp_gallery-item').forEach(item => {
+                   // Remove the item from DOM
+                   igp_galleryGrid.removeChild(item);
+               });
+               igp_visibleItems.clear();
+           }
        }
 
        // Handle window resize
