@@ -1128,6 +1128,7 @@
        const igp_bufferRows = 1; // Reduced buffer rows to minimize DOM operations
        let igp_imageLoadQueue = [];
        let igp_isProcessingQueue = false;
+	   let igp_imageCache = new Map(); // Store loaded images
        
        // DOM elements
        const igp_showImagesBtn = document.getElementById('igp_showImages');
@@ -1184,15 +1185,29 @@
 
        // Queue an image for loading
        function igp_queueImageForLoading(img, galleryItem) {
+           const imageUrl = img.dataset.src;
+           
+           // Check if this image is already cached
+           if (igp_imageCache.has(imageUrl)) {
+               // If it's cached, set it immediately
+               img.src = imageUrl;
+               galleryItem.classList.add('loaded');
+               return;
+           }
+           
            igp_imageLoadQueue.push({
                img: img,
                onload: () => {
                    galleryItem.classList.add('loaded');
+                   // Add to cache when loaded
+                   igp_imageCache.set(imageUrl, true);
                }
            });
            
            img.onload = () => {
                galleryItem.classList.add('loaded');
+               // Add to cache when loaded
+               igp_imageCache.set(imageUrl, true);
            };
            
            // Start processing queue if not already running
